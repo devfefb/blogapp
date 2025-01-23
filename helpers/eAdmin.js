@@ -1,1 +1,10 @@
-// Parei na aula #60 no minuto 2:32
+export function eAdmin(req, res, next) {
+
+    if (req.isAuthenticated() && req.user.eAdmin == 1) {
+        return next()
+    }
+
+    req.flash("error_msg", "Você precisa ser um administrador.")
+    res.redirect("/")
+
+}
